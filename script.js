@@ -3,9 +3,9 @@ let playerChoice = '';
 let botChoice = '';
 const cells = document.querySelectorAll('[data-cell]');
 const winningCombinations = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8], // Linhas
-  [0, 3, 6], [1, 4, 7], [2, 5, 8], // Colunas
-  [0, 4, 8], [2, 4, 6] // Diagonais
+  [0, 1, 2], [3, 4, 5], [6, 7, 8],
+  [0, 3, 6], [1, 4, 7], [2, 5, 8],
+  [0, 4, 8], [2, 4, 6]
 ];
 
 const chooseXBtn = document.getElementById('chooseX');
@@ -103,30 +103,24 @@ function botMove() {
   let availableCells = [...cells].filter(cell => cell.textContent === '');
   let moveMade = false;
 
-  // Tentar vencer
   moveMade = checkAndComplete(botChoice, availableCells);
 
-  // Bloquear o jogador de vencer
   if (!moveMade) {
     moveMade = checkAndComplete(playerChoice, availableCells);
   }
 
-  // Bloquear bifurcações
   if (!moveMade) {
     moveMade = blockFork(playerChoice, availableCells);
   }
 
-  // Prevenir futuras bifurcações
   if (!moveMade) {
     moveMade = preventFutureFork(playerChoice, availableCells);
   }
 
-  // Fazer uma jogada estratégica
   if (!moveMade) {
     moveMade = makeStrategicMove(availableCells);
   }
 
-  // Escolher um espaço aleatório se nenhuma das opções acima for válida
   if (!moveMade) {
     const randomCell = availableCells[Math.floor(Math.random() * availableCells.length)];
     makeMove(randomCell, botChoice);
@@ -181,20 +175,16 @@ function canCreateFork(player, cellIndex) {
 }
 
 function preventFutureFork(player, availableCells) {
-  // Verificar se o centro está ocupado e agir de acordo
   if (cells[4].textContent !== '') {
-    // Se o centro está ocupado, o bot deve tentar ocupar os cantos
     const corners = [0, 2, 6, 8];
     const opponentCorners = corners.filter(index => cells[index].textContent === player);
     if (opponentCorners.length === 1) {
-      // Se o jogador ocupou apenas um canto, o bot deve ocupar o canto oposto
       const oppositeCorner = 8 - opponentCorners[0];
       if (cells[oppositeCorner].textContent === '') {
         makeMove(cells[oppositeCorner], botChoice);
         return true;
       }
     } else if (opponentCorners.length === 2) {
-      // Se o jogador ocupou dois cantos opostos, o bot deve bloquear uma bifurcação
       const sideMoves = [1, 3, 5, 7];
       for (const move of sideMoves) {
         if (cells[move].textContent === '') {
@@ -205,19 +195,18 @@ function preventFutureFork(player, availableCells) {
     }
   }
 
-  // Continuar com a lógica anterior para prevenir bifurcações
   for (let i = 0; i < availableCells.length; i++) {
     let testCell = availableCells[i];
-    makeMove(testCell, player); // Simula a jogada do jogador
+    makeMove(testCell, player);
     let forks = 0;
     winningCombinations.forEach(comb => {
       if (comb.includes(parseInt(testCell.dataset.cell)) && canCreateFork(player, parseInt(testCell.dataset.cell))) {
         forks++;
       }
     });
-    undoMove(testCell); // Desfaz a simulação
+    undoMove(testCell);
     if (forks > 1) {
-      makeMove(testCell, botChoice); // Bloqueia a jogada se mais de uma bifurcação for possível
+      makeMove(testCell, botChoice);
       return true;
     }
   }
