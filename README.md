@@ -5,7 +5,6 @@ Bem-vindo ao repositório do **Jogo da Velha**, um clássico jogo de estratégia
 ## :sparkles: Características
 
 - **Interface Simples**: Fácil de jogar, difícil de dominar.
-- **Desafiador**: Algoritmos inteligentes para garantir que cada partida seja um novo desafio.
 - **Multiplataforma**: Jogue em qualquer dispositivo.
 
 ## :computer: Tecnologias Utilizadas
