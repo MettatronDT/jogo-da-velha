@@ -1,6 +1,6 @@
 # Jogo da Velha :x: :o:
 
-Bem-vindo ao repositório do **Jogo da Velha**, um clássico jogo de estratégia conhecido mundialmente. Este projeto foi desenvolvido com um layout simples, mas com funcionalidades avançadas para proporcionar um desafio real aos jogadores. Será que você consegue vencer?
+Bem-vindo ao repositório do **Jogo da Velha**, um clássico jogo de estratégia conhecido mundialmente. Este projeto foi desenvolvido com um layout simples, mas com funcionalidades bem elaboradas para proporcionar um desafio real aos jogadores. Será que é realmente possível vencer esse jogo?
 
 ## :sparkles: Características
 
