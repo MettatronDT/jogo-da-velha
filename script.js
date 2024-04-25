@@ -12,14 +12,14 @@ const chooseXBtn = document.getElementById('chooseX');
 const chooseOBtn = document.getElementById('chooseO');
 
 chooseXBtn.addEventListener('click', () => {
-  playerChoice = 'X';
-  botChoice = 'O';
+  playerChoice = '✖️';
+  botChoice = '⭕';
   startGame();
 });
 
 chooseOBtn.addEventListener('click', () => {
-  playerChoice = 'O';
-  botChoice = 'X';
+  playerChoice = '⭕';
+  botChoice = '✖️';
   startGame();
 });
 
