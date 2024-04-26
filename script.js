@@ -86,7 +86,7 @@ function showMessage(message, className) {
   setTimeout(() => {
     messageElement.remove();
     resetGame();
-  }, 2000);
+  }, 3000);
 }
 
 function resetGame() {
